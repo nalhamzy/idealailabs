@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Check } from "lucide-react";
+import { Send, Check, MessageSquare } from "lucide-react";
 import { getDict, type Locale } from "@/lib/i18n";
 
 export default function Contact({ locale }: { locale: Locale }) {
@@ -39,24 +39,25 @@ export default function Contact({ locale }: { locale: Locale }) {
   return (
     <section
       id="contact"
-      className="section-pad relative border-t border-white/5 bg-gradient-to-b from-ink-950 to-ink-900/40"
+      className="section-pad relative border-t border-[rgb(var(--border))] bg-[rgb(var(--surface-2))]"
     >
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center">
-          <div className="text-sm font-semibold uppercase tracking-wider text-brand-300">
+          <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
+            <MessageSquare className="h-3.5 w-3.5" />
             {d.contact.kicker}
           </div>
-          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl text-[rgb(var(--text))]">
             {d.contact.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-ink-300">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-[rgb(var(--text-muted))]">
             {d.contact.subtitle}
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="mt-12 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-10"
+          className="mt-12 rounded-3xl border border-[rgb(var(--border))] bg-[rgb(var(--surface))] p-6 md:p-10 lift"
         >
           <div className="grid gap-5 md:grid-cols-2">
             <Field name="name" label={d.contact.name} required />
@@ -79,7 +80,7 @@ export default function Contact({ locale }: { locale: Locale }) {
               options={d.contact.budgets as unknown as string[]}
             />
             <div className="md:col-span-2">
-              <label className="mb-2 block text-sm font-medium text-ink-100">
+              <label className="mb-2 block text-sm font-medium text-[rgb(var(--text))]">
                 {d.contact.message}
               </label>
               <textarea
@@ -87,7 +88,7 @@ export default function Contact({ locale }: { locale: Locale }) {
                 required
                 rows={5}
                 placeholder={d.contact.messagePlaceholder}
-                className="w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-ink-50 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30"
+                className="w-full rounded-xl border border-[rgb(var(--border))] bg-[rgb(var(--bg))] px-4 py-3 text-[rgb(var(--text))] placeholder:text-[rgb(var(--text-muted))] focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
               />
             </div>
           </div>
@@ -95,26 +96,28 @@ export default function Contact({ locale }: { locale: Locale }) {
           <div className="mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-between">
             <div className="text-sm">
               {status === "success" && (
-                <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
                   <Check className="h-4 w-4" />
                   {d.contact.success}
                 </span>
               )}
               {status === "error" && (
-                <span className="text-rose-400">{d.contact.error}</span>
+                <span className="text-rose-600 dark:text-rose-400">
+                  {d.contact.error}
+                </span>
               )}
             </div>
             <button
               type="submit"
               disabled={status === "loading"}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink-950 shadow-glow transition hover:bg-ink-100 disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white lift-strong transition hover:bg-brand-700 disabled:opacity-60"
             >
               <Send className="h-4 w-4 rtl:rotate-180" />
               {status === "loading" ? d.contact.submitting : d.contact.submit}
             </button>
           </div>
           {errorMsg && status === "error" && (
-            <div className="mt-3 text-center text-xs text-ink-400">
+            <div className="mt-3 text-center text-xs text-[rgb(var(--text-muted))]">
               {errorMsg}
             </div>
           )}
@@ -137,15 +140,15 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-ink-100">
+      <label className="mb-2 block text-sm font-medium text-[rgb(var(--text))]">
         {label}
-        {required && <span className="text-brand-300"> *</span>}
+        {required && <span className="text-brand-500"> *</span>}
       </label>
       <input
         name={name}
         type={type}
         required={required}
-        className="w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-ink-50 placeholder:text-ink-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30"
+        className="w-full rounded-xl border border-[rgb(var(--border))] bg-[rgb(var(--bg))] px-4 py-3 text-[rgb(var(--text))] placeholder:text-[rgb(var(--text-muted))] focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
       />
     </div>
   );
@@ -164,15 +167,15 @@ function Select({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-ink-100">
+      <label className="mb-2 block text-sm font-medium text-[rgb(var(--text))]">
         {label}
-        {required && <span className="text-brand-300"> *</span>}
+        {required && <span className="text-brand-500"> *</span>}
       </label>
       <select
         name={name}
         required={required}
         defaultValue=""
-        className="w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-ink-50 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400/30"
+        className="w-full rounded-xl border border-[rgb(var(--border))] bg-[rgb(var(--bg))] px-4 py-3 text-[rgb(var(--text))] focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
       >
         <option value="" disabled>
           —

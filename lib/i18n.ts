@@ -152,6 +152,7 @@ export const dictionaries = {
     },
     company: {
       name: "Ideal Intelligence",
+      shortName: "Ideal Intelligence",
       location: "Muscat, Oman",
     },
   },
@@ -167,7 +168,7 @@ export const dictionaries = {
     hero: {
       badge: "ذكاء اصطناعي • معالجة لغة • أتمتة محادثات",
       title: "ابنِ بذكاء مع",
-      titleAccent: "آيديال إنتليجنس",
+      titleAccent: "الأمثل للذكاء الاصطناعي",
       subtitle:
         "نصمّم ونطلق تطبيقات ذكاء اصطناعي جاهزة للإنتاج، وأنظمة معالجة لغة متقدمة، وأتمتة واتساب للشركات في الخليج وخارجه.",
       ctaPrimary: "ابدأ مشروعك",
@@ -300,7 +301,8 @@ export const dictionaries = {
       terms: "الشروط",
     },
     company: {
-      name: "آيديال إنتليجنس",
+      name: "الأمثل للذكاء الاصطناعي",
+      shortName: "الأمثل",
       location: "مسقط، عُمان",
     },
   },

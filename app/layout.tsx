@@ -54,6 +54,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const themeScript = `
+(function(){try{var s=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=s||(m?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -64,10 +68,12 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       className={`${inter.variable} ${display.variable} ${arabic.variable}`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen bg-ink-950 text-ink-50 antialiased">
-        {children}
-      </body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen antialiased">{children}</body>
     </html>
   );
 }

@@ -7,31 +7,31 @@ export default function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-70" />
-      <div className="absolute inset-x-0 top-0 h-[600px] bg-grid-fade" />
+      <div className="absolute inset-x-0 top-0 h-[700px] hero-glow" />
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 md:pt-32 md:pb-28">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-ink-100 backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5 text-brand-300" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--surface))] px-4 py-1.5 text-xs font-medium text-[rgb(var(--text-muted))] backdrop-blur lift">
+            <Sparkles className="h-3.5 w-3.5 text-brand-500" />
             {d.hero.badge}
           </span>
-          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
+          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl text-[rgb(var(--text))]">
             {d.hero.title}{" "}
             <span className="gradient-text">{d.hero.titleAccent}</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-200 md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[rgb(var(--text-muted))] md:text-xl">
             {d.hero.subtitle}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href={`/${locale}#contact`}
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink-950 shadow-glow transition hover:bg-ink-100"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white lift-strong transition hover:bg-brand-700"
             >
               {d.hero.ctaPrimary}
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
             </Link>
             <Link
               href={`/${locale}#products`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-ink-50 transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--surface))] px-6 py-3 text-sm font-semibold text-[rgb(var(--text))] transition hover:bg-[rgb(var(--surface-2))]"
             >
               {d.hero.ctaSecondary}
             </Link>
@@ -50,11 +50,11 @@ export default function Hero({ locale }: { locale: Locale }) {
 
 function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <div className="glass rounded-2xl p-6 text-center">
+    <div className="surface lift rounded-2xl p-6 text-center">
       <div className="font-display text-4xl font-bold gradient-text">
         {value}
       </div>
-      <div className="mt-1 text-sm text-ink-300">{label}</div>
+      <div className="mt-1 text-sm text-[rgb(var(--text-muted))]">{label}</div>
     </div>
   );
 }
