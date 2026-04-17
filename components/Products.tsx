@@ -41,7 +41,7 @@ export default function Products({ locale }: { locale: Locale }) {
             features={d.products.recruit.features}
             grad="from-emerald-500 via-teal-600 to-cyan-700"
             cta={d.products.cta}
-            href="#"
+            href="https://recruit.careersagent.ai"
           />
         </div>
       </div>

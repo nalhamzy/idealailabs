@@ -74,7 +74,7 @@ export const dictionaries = {
         ],
       },
       recruit: {
-        name: "RecruitAI",
+        name: "RecruitMind AI",
         tag: "AI Hiring Suite",
         desc: "An advanced recruiter workbench: CV parsing, semantic candidate search, automated outreach, and conversational screening at scale.",
         features: [
@@ -225,7 +225,7 @@ export const dictionaries = {
         ],
       },
       recruit: {
-        name: "ركروت إيه آي",
+        name: "ريكروت مايند AI",
         tag: "منظومة توظيف بالذكاء الاصطناعي",
         desc: "طاولة عمل متقدّمة للمجنّدين: قراءة السير الذاتية، بحث دلالي عن المرشحين، تواصل آلي، ومقابلات حوارية بحجم واسع.",
         features: [
