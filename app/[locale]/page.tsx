@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import DemoShowcase from "@/components/DemoShowcase";
 import Products from "@/components/Products";
 import Approach from "@/components/Approach";
 import Contact from "@/components/Contact";
@@ -19,6 +20,7 @@ export default async function Home({
     <>
       <Hero locale={l} />
       <Services locale={l} />
+      <DemoShowcase locale={l} />
       <Products locale={l} />
       <Approach locale={l} />
       <Contact locale={l} />

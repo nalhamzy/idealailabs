@@ -1,4 +1,4 @@
-import { Briefcase, Users, Check, ArrowRight, Layers } from "lucide-react";
+import { Briefcase, Users, Check, ArrowRight, Layers, MessageCircle } from "lucide-react";
 import { getDict, type Locale } from "@/lib/i18n";
 
 export default function Products({ locale }: { locale: Locale }) {
@@ -22,7 +22,7 @@ export default function Products({ locale }: { locale: Locale }) {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <ProductCard
             Icon={Briefcase}
             name={d.products.careers.name}
@@ -42,6 +42,16 @@ export default function Products({ locale }: { locale: Locale }) {
             grad="from-emerald-500 via-teal-600 to-cyan-700"
             cta={d.products.cta}
             href="https://recruit.careersagent.ai"
+          />
+          <ProductCard
+            Icon={MessageCircle}
+            name={d.products.tawasul.name}
+            tag={d.products.tawasul.tag}
+            desc={d.products.tawasul.desc}
+            features={d.products.tawasul.features}
+            grad="from-lime-500 via-emerald-600 to-teal-700"
+            cta={d.products.cta}
+            href="https://tawasul.idealailabs.com"
           />
         </div>
       </div>

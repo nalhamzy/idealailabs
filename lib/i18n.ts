@@ -61,7 +61,7 @@ export const dictionaries = {
       kicker: "Our products",
       title: "Proven platforms, running in production.",
       subtitle:
-        "Two of our flagship AI products serving thousands of users across the region.",
+        "Three flagship AI products running in production across the region.",
       careers: {
         name: "CareersAgent",
         tag: "Job Search Platform",
@@ -82,6 +82,17 @@ export const dictionaries = {
           "Semantic talent search",
           "Automated candidate outreach",
           "AI screening conversations",
+        ],
+      },
+      tawasul: {
+        name: "Tawasul",
+        tag: "WhatsApp Business Automation",
+        desc: "A multi-tenant WhatsApp platform: an AI receptionist that takes orders, books appointments, and answers enquiries from live business data — with a unified inbox and Arabic-first UX.",
+        features: [
+          "AI agent on WhatsApp (orders, bookings, enquiries)",
+          "Real-time availability & no double-booking",
+          "Unified inbox + staff dashboard",
+          "Arabic & English, multi-business",
         ],
       },
       cta: "Learn more",
@@ -212,7 +223,7 @@ export const dictionaries = {
     products: {
       kicker: "منتجاتنا",
       title: "منصّات مجرّبة وتعمل في الإنتاج.",
-      subtitle: "اثنان من منتجاتنا الرائدة يخدمان آلاف المستخدمين في المنطقة.",
+      subtitle: "ثلاثة من منتجاتنا الرائدة تعمل في الإنتاج في المنطقة.",
       careers: {
         name: "كاريرز إيجنت",
         tag: "منصة البحث عن وظيفة",
@@ -233,6 +244,17 @@ export const dictionaries = {
           "بحث دلالي عن المواهب",
           "تواصل آلي مع المرشحين",
           "محادثات فرز بالذكاء الاصطناعي",
+        ],
+      },
+      tawasul: {
+        name: "تواصل",
+        tag: "أتمتة أعمال واتساب",
+        desc: "منصة واتساب متعددة الشركات: موظف استقبال ذكي يستقبل الطلبات ويحجز المواعيد ويجيب على الاستفسارات من بيانات النشاط الحية — مع صندوق وارد موحّد وتجربة عربية أولًا.",
+        features: [
+          "وكيل ذكي على واتساب (طلبات، حجوزات، استفسارات)",
+          "توفّر فوري ومنع التعارض في الحجز",
+          "صندوق وارد موحّد ولوحة تحكم",
+          "عربي وإنجليزي، متعدد الشركات",
         ],
       },
       cta: "اعرف المزيد",

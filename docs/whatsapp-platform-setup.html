@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WhatsApp Platform — Setup &amp; Onboarding · Ideal Intelligence</title>
+<style>
+  :root{
+    --navy:#0a1733; --navy2:#0f2150; --panel:#111f3f; --line:rgba(255,255,255,.10);
+    --ink:#e8eefc; --muted:#9fb0d4; --cyan:#22d3ee; --cyan2:#06b6d4; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink); font-family:"Segoe UI",Tahoma,system-ui,sans-serif;
+    background:radial-gradient(1200px 700px at 50% -200px,var(--navy2),var(--navy) 55%);
+    line-height:1.65;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:40px 22px 80px}
+  header.hero{text-align:center;margin-bottom:36px}
+  .brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+  .diamond{width:16px;height:16px;background:var(--cyan);transform:rotate(45deg);border-radius:3px;box-shadow:0 0 18px var(--cyan)}
+  .brand b{font-size:17px;letter-spacing:.3px}
+  .brand span{color:var(--muted);font-size:14px}
+  h1{font-size:30px;margin:6px 0 6px}
+  .sub{color:var(--muted);font-size:15px;margin:0}
+  .tag{display:inline-block;margin-top:10px;font-size:12px;color:var(--cyan);border:1px solid var(--line);
+    padding:4px 12px;border-radius:999px;background:rgba(34,211,238,.07)}
+  h2{font-size:21px;margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h2 .n{color:var(--cyan);font-size:15px;margin-inline-end:8px}
+  h3{font-size:16px;margin:22px 0 8px;color:#cdd8f0}
+  p{margin:0 0 12px;color:#cdd8f0}
+  a{color:var(--cyan);text-decoration:none}
+  code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13px;
+    font-family:"Cascadia Code",Consolas,monospace;color:#dbeafe}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .card .k{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+  .card .v{font-size:15px;font-weight:700;margin-top:4px;word-break:break-word}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  tr:last-child td{border-bottom:0}
+  .pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;font-weight:700}
+  .pill.secret{background:rgba(248,113,113,.15);color:var(--red)}
+  .pill.public{background:rgba(52,211,153,.15);color:var(--green)}
+  /* flow diagram */
+  .flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin:18px 0}
+  .node{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:14px;text-align:center}
+  .node .ic{font-size:22px}
+  .node .t{font-weight:700;margin-top:6px;font-size:14px}
+  .node .d{color:var(--muted);font-size:12px;margin-top:4px}
+  .arrow{display:flex;align-items:center;color:var(--cyan);font-size:20px;font-weight:700}
+  /* stepper */
+  ol.steps{list-style:none;counter-reset:s;padding:0;margin:14px 0}
+  ol.steps li{counter-increment:s;position:relative;padding:14px 16px 14px 58px;background:var(--panel);
+    border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
+  ol.steps li::before{content:counter(s);position:absolute;left:14px;top:14px;width:30px;height:30px;
+    border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#031018;
+    font-weight:800;display:flex;align-items:center;justify-content:center}
+  ol.steps li .who{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;
+    margin-bottom:4px}
+  .who.you{background:rgba(34,211,238,.15);color:var(--cyan)}
+  .who.client{background:rgba(251,191,36,.15);color:var(--amber)}
+  .who.system{background:rgba(52,211,153,.15);color:var(--green)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .note{background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.25);border-radius:12px;padding:12px 14px;font-size:14px}
+  .warn{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.30)}
+  footer{margin-top:50px;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:18px}
+  @media (max-width:640px){.two{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
+  @media print{body{background:#fff;color:#111}.card,.node,ol.steps li,.note{background:#f6f7f9;border-color:#ddd}
+    code{background:#eee;color:#111}h2{border-color:#ddd}a{color:#06c}.diamond{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand"><span class="diamond"></span><b>Ideal Intelligence</b><span>· الأمثل للذكاء الاصطناعي</span></div>
+    <h1>WhatsApp Chatbot Platform</h1>
+    <p class="sub">Setup architecture &amp; the A‑to‑Z process for connecting a new business</p>
+    <span class="tag">Internal reference · updated 27 June 2026</span>
+  </header>
+
+  <!-- 1 -->
+  <h2><span class="n">01</span>The big idea</h2>
+  <p>We run <b>one</b> Meta app — <i>Ideal Intelligence</i> — for <b>every</b> client. We never create a new app
+  per business. Each client connects <b>their own</b> WhatsApp number to our app through a self‑serve page on
+  <b>idealailabs.com</b>. From then on, their customers' messages flow to our server, which replies on their behalf.</p>
+
+  <div class="flow">
+    <div class="node"><div class="ic">📱</div><div class="t">Client's number</div><div class="d">connects once via /onboard</div></div>
+    <div class="arrow">➜</div>
+    <div class="node"><div class="ic">🧩</div><div class="t">Our ONE Meta app</div><div class="d">Ideal Intelligence</div></div>
+    <div class="arrow">➜</div>
+    <div class="node"><div class="ic">🖥️</div><div class="t">idealailabs.com</div><div class="d">webhook + bot logic</div></div>
+    <div class="arrow">➜</div>
+    <div class="node"><div class="ic">💬</div><div class="t">Customer reply</div><div class="d">sent as the client</div></div>
+  </div>
+
+  <!-- 2 -->
+  <h2><span class="n">02</span>Key identifiers</h2>
+  <div class="cards">
+    <div class="card"><div class="k">Meta App</div><div class="v">Ideal Intelligence</div></div>
+    <div class="card"><div class="k">App ID</div><div class="v">1666901441099073</div></div>
+    <div class="card"><div class="k">Business ID (verified)</div><div class="v">799766182057295</div></div>
+    <div class="card"><div class="k">Embedded Signup Config ID</div><div class="v">2190411671691417</div></div>
+    <div class="card"><div class="k">Website</div><div class="v">idealailabs.com</div></div>
+    <div class="card"><div class="k">Graph API</div><div class="v">v23.0</div></div>
+  </div>
+  <div class="card"><div class="k">Webhook URL</div><div class="v">https://idealailabs.com/api/whatsapp/webhook</div></div>
+
+  <!-- 3 -->
+  <h2><span class="n">03</span>Architecture</h2>
+  <p>The platform lives inside the <b>idealailabs</b> Next.js app (the marketing site doubles as the backend).</p>
+  <table>
+    <tr><th>Component</th><th>Route / location</th><th>Role</th></tr>
+    <tr><td>Onboarding page</td><td><code>/onboard</code></td><td>Where a client connects their WhatsApp (Embedded Signup button)</td></tr>
+    <tr><td>Connect API</td><td><code>/api/whatsapp/onboard</code></td><td>Exchanges signup code → client token, subscribes our app to their WABA, stores connection, emails the team</td></tr>
+    <tr><td>Webhook</td><td><code>/api/whatsapp/webhook</code></td><td>Receives messages, verifies signature, routes by phone number, auto‑replies</td></tr>
+    <tr><td>Privacy policy</td><td><code>/privacy</code></td><td>Required for App Review; WhatsApp/Meta data handling</td></tr>
+    <tr><td>Database table</td><td><code>whatsapp_connections</code></td><td>One row per client: WABA ID, phone number ID, business name, access token (server‑only)</td></tr>
+  </table>
+
+  <!-- 4 -->
+  <h2><span class="n">04</span>How Embedded Signup works</h2>
+  <ol class="steps">
+    <li><span class="who client">CLIENT</span><br>Opens <code>idealailabs.com/onboard</code> and clicks <b>Connect WhatsApp</b>.</li>
+    <li><span class="who system">SYSTEM</span><br>The Facebook JS SDK opens Meta's Embedded Signup popup.</li>
+    <li><span class="who client">CLIENT</span><br>Logs in with <b>their</b> Facebook business account, selects/creates a WhatsApp Business Account, verifies the number by SMS/voice.</li>
+    <li><span class="who system">SYSTEM</span><br>The browser receives a short‑lived <code>code</code>; the popup posts back <code>waba_id</code> + <code>phone_number_id</code>.</li>
+    <li><span class="who system">SYSTEM</span><br>The page sends these to <code>/api/whatsapp/onboard</code>.</li>
+    <li><span class="who system">SYSTEM</span><br>The server (using the secret <b>App Secret</b>) swaps the code for the client's <b>long‑lived token</b>, subscribes our app to their WABA, <b>stores</b> the connection, and <b>emails</b> the team.</li>
+  </ol>
+  <div class="note">🔐 The App Secret is used <b>only on the server</b>. Access tokens are <b>never</b> sent to the browser.</div>
+
+  <!-- 5 -->
+  <h2><span class="n">05</span>Environment variables</h2>
+  <p>Set in <code>.env.local</code> (local) <b>and</b> Vercel → Settings → Environment Variables.</p>
+  <table>
+    <tr><th>Variable</th><th>Type</th><th>Value / source</th></tr>
+    <tr><td><code>NEXT_PUBLIC_WA_APP_ID</code></td><td><span class="pill public">PUBLIC</span></td><td><code>1666901441099073</code></td></tr>
+    <tr><td><code>NEXT_PUBLIC_WA_CONFIG_ID</code></td><td><span class="pill public">PUBLIC</span></td><td><code>2190411671691417</code></td></tr>
+    <tr><td><code>WHATSAPP_APP_SECRET</code></td><td><span class="pill secret">SECRET</span></td><td>Meta → App settings → Basic → App Secret → Show</td></tr>
+    <tr><td><code>WHATSAPP_VERIFY_TOKEN</code></td><td><span class="pill secret">SECRET</span></td><td>Any random string; must match the value entered in the Meta webhook config</td></tr>
+    <tr><td><code>WHATSAPP_GRAPH_VERSION</code></td><td><span class="pill public">PUBLIC</span></td><td><code>v23.0</code></td></tr>
+    <tr><td><code>DATABASE_URL</code> / <code>DATABASE_AUTH_TOKEN</code></td><td><span class="pill secret">SECRET</span></td><td>Turso libSQL database (production)</td></tr>
+    <tr><td><code>RESEND_API_KEY</code></td><td><span class="pill secret">SECRET</span></td><td>Optional — enables the "new client connected" email</td></tr>
+  </table>
+
+  <!-- 6 -->
+  <h2><span class="n">06</span>One‑time platform setup</h2>
+  <ol class="steps">
+    <li><span class="who you">DONE</span><br>Business verification ✅ and Embedded Signup config "ES Config" (<code>2190411671691417</code>) ✅</li>
+    <li><span class="who you">YOU</span><br>Set all env vars in <code>.env.local</code> and Vercel.</li>
+    <li><span class="who you">YOU</span><br>Deploy the site: <code>vercel --prod</code></li>
+    <li><span class="who you">YOU</span><br>Run the DB migration in production: <code>npm run db:migrate</code></li>
+    <li><span class="who you">YOU</span><br>Webhook → Meta → WhatsApp → Configuration: Callback URL <code>https://idealailabs.com/api/whatsapp/webhook</code>, Verify token = <code>WHATSAPP_VERIFY_TOKEN</code> → <b>Verify and save</b> → subscribe <b>messages</b>.</li>
+    <li><span class="who you">YOU</span><br>Allowlist <code>idealailabs.com</code> in Meta → App settings → Facebook Login for Business.</li>
+    <li><span class="who you">YOU</span><br>For <b>unlimited</b> clients: complete <b>App Review</b> + <b>Access Verification</b> (Tech Provider). Until then you can onboard a limited number for testing.</li>
+  </ol>
+
+  <!-- 7 -->
+  <h2><span class="n">07</span>A‑to‑Z: connecting a NEW business</h2>
+  <h3>What the client needs first</h3>
+  <ul>
+    <li>A <b>phone number not currently active</b> on the WhatsApp app or WhatsApp Business app (a number lives on the app <b>or</b> the API, not both). Fresh number is easiest.</li>
+    <li>A <b>Facebook account</b> that controls (or can create) their business.</li>
+    <li>Ability to receive an <b>SMS / voice code</b> on that number.</li>
+  </ul>
+
+  <h3>The steps</h3>
+  <ol class="steps">
+    <li><span class="who you">YOU</span><br>Send the client their onboarding link: <code>https://idealailabs.com/onboard</code></li>
+    <li><span class="who client">CLIENT</span><br>Opens the link, clicks <b>Connect WhatsApp</b>.</li>
+    <li><span class="who client">CLIENT</span><br>Logs in with their <b>Facebook business account</b>.</li>
+    <li><span class="who client">CLIENT</span><br>Selects or creates their <b>Meta Business portfolio</b> + <b>WhatsApp Business Account</b>.</li>
+    <li><span class="who client">CLIENT</span><br>Enters their <b>business phone number</b> and verifies it with the <b>SMS/voice code</b>.</li>
+    <li><span class="who system">SYSTEM</span><br>Embedded Signup finishes → our server exchanges the token, subscribes our app to their WABA, stores the connection, and <b>emails you</b> "New WhatsApp client connected".</li>
+    <li><span class="who client">CLIENT</span><br>Adds a <b>payment method</b> to their WhatsApp account (Model A) — or you handle billing (Model B).</li>
+    <li><span class="who you">YOU</span><br>(Optional) Tailor the bot for this client — business name, tone, FAQ / knowledge.</li>
+    <li><span class="who system">SYSTEM</span><br>A customer messages the client's number → the <b>webhook</b> receives it → routes it to this client → the <b>bot replies</b> ✅</li>
+  </ol>
+
+  <div class="note">When a message arrives, the webhook <b>verifies the signature</b>, finds the matching connection by
+  <code>phone_number_id</code>, marks the message read, generates a reply, and sends it using <b>that client's</b> token.</div>
+
+  <!-- 8 -->
+  <h2><span class="n">08</span>Billing models</h2>
+  <div class="two">
+    <div class="card">
+      <div class="v" style="color:var(--cyan)">Model A — client pays Meta</div>
+      <p style="font-size:14px;margin-top:8px">The <b>client's</b> card is on their WABA. Meta bills <b>them</b> directly for conversations. You invoice your <b>service fee</b> separately.</p>
+      <p style="font-size:13px;color:var(--muted)">Best for: clean separation, zero billing risk.</p>
+    </div>
+    <div class="card">
+      <div class="v" style="color:var(--cyan)">Model B — you pay Meta</div>
+      <p style="font-size:14px;margin-top:8px"><b>Your</b> card is on the WABA. Meta bills <b>you</b>; you send <b>one all‑in invoice</b> (your fee + messaging, marked up).</p>
+      <p style="font-size:13px;color:var(--muted)">Best for: "I handle everything, one bill" simplicity.</p>
+    </div>
+  </div>
+  <p style="font-size:14px;color:var(--muted)">Meta only governs <b>who pays for messages</b>. Your setup/management/service fee is your own arrangement.</p>
+
+  <!-- 9 -->
+  <h2><span class="n">09</span>Testing without a real client</h2>
+  <p>Use Meta's <b>free Test Number</b> (WhatsApp → API Setup panel). Free messages for 90 days, no payment method,
+  no risk to real client accounts — ideal for confirming the send / receive / reply loop.</p>
+
+  <!-- 10 -->
+  <h2><span class="n">10</span>Troubleshooting</h2>
+  <table>
+    <tr><th>Symptom</th><th>Likely cause</th></tr>
+    <tr><td>Facebook "Verify and save" fails</td><td>Site not deployed yet, or <code>WHATSAPP_VERIFY_TOKEN</code> in Vercel ≠ value typed in Meta</td></tr>
+    <tr><td>Webhook returns 401 on every message</td><td><code>WHATSAPP_APP_SECRET</code> not set (signature check fails)</td></tr>
+    <tr><td><code>/onboard</code> button does nothing</td><td><code>NEXT_PUBLIC_WA_CONFIG_ID</code> not set</td></tr>
+    <tr><td>Connection not saved in production</td><td><code>DATABASE_URL</code> points to a local file (serverless is ephemeral), or migration not run</td></tr>
+    <tr><td>Client can't send proactive messages</td><td>Their WABA has no payment method attached</td></tr>
+    <tr><td>App "Ineligible for Submission"</td><td>App icon (1024² transparent), Privacy URL, and Category must be set in App settings → Basic</td></tr>
+  </table>
+
+  <footer>
+    Ideal Intelligence · الأمثل للذكاء الاصطناعي · Muscat, Oman · idealailabs@gmail.com<br>
+    Internal documentation — not for public distribution.
+  </footer>
+</div>
+</body>
+</html>

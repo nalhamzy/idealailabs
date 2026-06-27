@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type React from "react";
 import { Inter, Space_Grotesk, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
@@ -22,34 +23,36 @@ const arabic = IBM_Plex_Sans_Arabic({
 export const metadata: Metadata = {
   metadataBase: new URL("https://idealailabs.com"),
   title: {
-    default: "Ideal Intelligence — AI, NLP & WhatsApp Automation Studio",
-    template: "%s | Ideal Intelligence",
+    default: "IdealAI Labs - Software, Websites, Stores, WhatsApp Automation",
+    template: "%s | IdealAI Labs",
   },
   description:
-    "An AI studio in Muscat, Oman — building production AI apps, advanced NLP systems, WhatsApp chatbots, and agentic automation for the Gulf and beyond.",
+    "IdealAI Labs builds websites, ecommerce stores, WhatsApp automation, appointment systems, custom software, and AI document tools for Oman and the Gulf.",
   keywords: [
     "AI Oman",
-    "WhatsApp chatbot",
-    "NLP Arabic",
-    "AI consultancy Muscat",
-    "conversational AI",
-    "agentic AI",
-    "Ideal Intelligence",
+    "websites Oman",
+    "online store Oman",
+    "Thawani ecommerce integration",
+    "WhatsApp chatbot Oman",
+    "appointment system Oman",
+    "business software Muscat",
+    "document AI",
+    "IdealAI Labs",
   ],
   openGraph: {
-    title: "Ideal Intelligence",
+    title: "IdealAI Labs",
     description:
-      "AI apps, NLP, WhatsApp automation, and agentic systems — built in Muscat, shipped globally.",
+      "Software, websites, stores, WhatsApp automation, appointments, and AI systems built in Muscat.",
     url: "https://idealailabs.com",
-    siteName: "Ideal Intelligence",
+    siteName: "IdealAI Labs",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ideal Intelligence",
+    title: "IdealAI Labs",
     description:
-      "AI apps, NLP, WhatsApp automation, and agentic systems — built in Muscat.",
+      "Software, websites, stores, WhatsApp automation, and AI systems built in Muscat.",
   },
   robots: { index: true, follow: true },
 };

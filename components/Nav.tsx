@@ -4,16 +4,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import { getDict, type Locale } from "@/lib/i18n";
+import { platformCopy } from "@/lib/platform";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Nav({ locale }: { locale: Locale }) {
   const d = getDict(locale);
+  const copy = platformCopy[locale];
   const [open, setOpen] = useState(false);
   const other: Locale = locale === "en" ? "ar" : "en";
   const base = `/${locale}`;
 
   const links = [
     { href: `${base}#services`, label: d.nav.services },
+    { href: `${base}#demos`, label: copy.navDemos },
     { href: `${base}#products`, label: d.nav.products },
     { href: `${base}#about`, label: d.nav.about },
     { href: `${base}#contact`, label: d.nav.contact },
