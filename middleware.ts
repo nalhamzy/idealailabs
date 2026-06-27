@@ -11,27 +11,13 @@ const subdomainRoutes: Record<string, string> = {
 export function middleware(req: NextRequest) {
   const host = req.headers.get("host")?.split(":")[0] || "";
   const first = host.split(".")[0];
-  const { pathname } = req.nextUrl;
-
-  // Platform front door: tawasul.idealailabs.com → the /tawasul intro landing.
-  // /onboard, /privacy, /api and assets pass through unchanged so the Connect
-  // flow works on the same subdomain.
-  if (first === "tawasul") {
-    if (pathname === "/") {
-      const url = req.nextUrl.clone();
-      url.pathname = "/tawasul";
-      return NextResponse.rewrite(url);
-    }
-    return NextResponse.next();
-  }
-
-  // Demo subdomains (store./spa./bots./pages./docs.) → /en/demos/<demo>.
   const demo = subdomainRoutes[first];
 
-  if (!demo || pathname.startsWith("/api")) {
+  if (!demo || req.nextUrl.pathname.startsWith("/api")) {
     return NextResponse.next();
   }
 
+  const pathname = req.nextUrl.pathname;
   if (pathname.startsWith("/en") || pathname.startsWith("/ar")) {
     return NextResponse.next();
   }
