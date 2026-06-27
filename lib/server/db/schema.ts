@@ -49,20 +49,6 @@ export const storeOrders = sqliteTable("store_orders", {
   updatedAt: text("updated_at").notNull(),
 });
 
-export const whatsappConnections = sqliteTable("whatsapp_connections", {
-  id: text("id").primaryKey(),
-  wabaId: text("waba_id").notNull(),
-  phoneNumberId: text("phone_number_id").notNull(),
-  displayPhoneNumber: text("display_phone_number"),
-  businessName: text("business_name"),
-  // Long-lived business token for this client's WABA. Server-only — never sent to
-  // the browser, never returned in admin listings. Move to a KMS before scaling.
-  accessToken: text("access_token").notNull(),
-  status: text("status").notNull().default("connected"),
-  createdAt: text("created_at").notNull(),
-  updatedAt: text("updated_at").notNull(),
-});
-
 export const spaAppointments = sqliteTable("spa_appointments", {
   id: text("id").primaryKey(),
   customerName: text("customer_name").notNull(),

@@ -1,6 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { db } from "./db/client";
-import { leads, demoEvents, storeOrders, spaAppointments, whatsappConnections } from "./db/schema";
+import { leads, demoEvents, storeOrders, spaAppointments } from "./db/schema";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Durable store backed by libSQL/Turso (was a .data JSON file — ephemeral on
@@ -102,19 +102,6 @@ export type StoredData = {
   spaAppointments: SpaAppointment[];
 };
 
-export type WhatsAppConnection = {
-  id: string;
-  wabaId: string;
-  phoneNumberId: string;
-  displayPhoneNumber?: string;
-  businessName?: string;
-  // Present only on create / server-side reads; omitted from admin listings.
-  accessToken?: string;
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
 function now() {
   return new Date().toISOString();
 }
@@ -183,77 +170,6 @@ function toAppointment(r: typeof spaAppointments.$inferSelect): SpaAppointment {
     notes: r.notes ?? undefined,
     status: r.status as SpaAppointment["status"],
     messages: r.messages ?? [],
-    createdAt: r.createdAt,
-    updatedAt: r.updatedAt,
-  };
-}
-
-// ── WhatsApp connections (onboarded client WABAs) ─────────────────────────
-export async function createWhatsAppConnection(
-  payload: Omit<WhatsAppConnection, "id" | "status" | "createdAt" | "updatedAt"> &
-    Partial<Pick<WhatsAppConnection, "status">>
-) {
-  const createdAt = now();
-  const conn: WhatsAppConnection = {
-    id: id("wa"),
-    status: payload.status ?? "connected",
-    createdAt,
-    updatedAt: createdAt,
-    ...payload,
-  };
-  await db.insert(whatsappConnections).values({
-    id: conn.id,
-    wabaId: conn.wabaId,
-    phoneNumberId: conn.phoneNumberId,
-    displayPhoneNumber: conn.displayPhoneNumber ?? null,
-    businessName: conn.businessName ?? null,
-    accessToken: conn.accessToken ?? "",
-    status: conn.status,
-    createdAt,
-    updatedAt: createdAt,
-  });
-  return conn;
-}
-
-// Listing intentionally OMITS accessToken (don't surface tokens to the admin UI).
-export async function listWhatsAppConnections(): Promise<WhatsAppConnection[]> {
-  const rows = await db
-    .select()
-    .from(whatsappConnections)
-    .orderBy(desc(whatsappConnections.createdAt));
-  return rows.map((r) => ({
-    id: r.id,
-    wabaId: r.wabaId,
-    phoneNumberId: r.phoneNumberId,
-    displayPhoneNumber: r.displayPhoneNumber ?? undefined,
-    businessName: r.businessName ?? undefined,
-    status: r.status,
-    createdAt: r.createdAt,
-    updatedAt: r.updatedAt,
-  }));
-}
-
-// Server-only: returns the connection INCLUDING its access token, looked up by the
-// phone_number_id that the inbound webhook payload carries. Used by the bot runtime.
-export async function getWhatsAppConnectionByPhoneId(
-  phoneNumberId: string
-): Promise<WhatsAppConnection | null> {
-  const rows = await db
-    .select()
-    .from(whatsappConnections)
-    .where(eq(whatsappConnections.phoneNumberId, phoneNumberId))
-    .orderBy(desc(whatsappConnections.createdAt))
-    .limit(1);
-  const r = rows[0];
-  if (!r) return null;
-  return {
-    id: r.id,
-    wabaId: r.wabaId,
-    phoneNumberId: r.phoneNumberId,
-    displayPhoneNumber: r.displayPhoneNumber ?? undefined,
-    businessName: r.businessName ?? undefined,
-    accessToken: r.accessToken,
-    status: r.status,
     createdAt: r.createdAt,
     updatedAt: r.updatedAt,
   };
