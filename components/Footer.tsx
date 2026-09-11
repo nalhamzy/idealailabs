@@ -32,10 +32,10 @@ export default function Footer({ locale }: { locale: Locale }) {
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-brand-500" />
                 <a
-                  href="mailto:idealailabs@gmail.com"
+                  href="mailto:contact@idealailabs.com"
                   className="hover:text-[rgb(var(--text))]"
                 >
-                  idealailabs@gmail.com
+                  contact@idealailabs.com
                 </a>
               </div>
             </div>

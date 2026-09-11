@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const UPDATED = "27 June 2026";
-const CONTACT = "idealailabs@gmail.com";
+const CONTACT = "contact@idealailabs.com";
 
 export default function PrivacyPage() {
   return (

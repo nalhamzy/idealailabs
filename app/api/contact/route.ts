@@ -4,7 +4,7 @@ import { createLead } from "@/lib/server/persistent-store";
 
 export const runtime = "nodejs";
 
-const RECIPIENT = process.env.CONTACT_RECIPIENT || "idealailabs@gmail.com";
+const RECIPIENT = process.env.CONTACT_RECIPIENT || "contact@idealailabs.com";
 const FROM =
   process.env.CONTACT_FROM || "Ideal Intelligence <onboarding@resend.dev>";
 
