@@ -47,7 +47,8 @@ See `.env.example`.
 
 Important variables:
 
-- `RESEND_API_KEY`: sends contact email notifications.
+- `RESEND_API_KEY`: sends contact email notifications through Resend, when set.
+- `SES_ACCESS_KEY_ID` / `SES_SECRET_ACCESS_KEY` / `SES_REGION`: otherwise contact notifications go through Amazon SES (idealailabs.com is a verified identity). `CONTACT_FROM` must be on that domain; `CONTACT_RECIPIENT` takes a comma-separated list.
 - `ADMIN_ACCESS_KEY`: protects `/admin` APIs.
 - `THAWANI_API_KEY` and `THAWANI_PUBLISHABLE_KEY`: enables real Thawani checkout sessions.
 - `THAWANI_SECRET_KEY` and `THAWANI_PUBLIC_KEY`: accepted aliases for older env files.

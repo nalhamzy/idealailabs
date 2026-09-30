@@ -1,12 +1,61 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { createLead } from "@/lib/server/persistent-store";
 
 export const runtime = "nodejs";
 
-const RECIPIENT = process.env.CONTACT_RECIPIENT || "contact@idealailabs.com";
+// Comma-separated list allowed.
+const RECIPIENTS = (process.env.CONTACT_RECIPIENT || "contact@idealailabs.com")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+// idealailabs.com is a verified SES identity (DKIM on), so no-reply@ can send.
 const FROM =
-  process.env.CONTACT_FROM || "Ideal Intelligence <onboarding@resend.dev>";
+  process.env.CONTACT_FROM || "Ideal Intelligence <no-reply@idealailabs.com>";
+
+type Mail = { subject: string; html: string; replyTo: string };
+
+// Resend when its key is set; otherwise Amazon SES. The SES key lives under
+// SES_* names because Vercel reserves AWS_ACCESS_KEY_ID / AWS_REGION.
+// Returns the provider that sent, or null when neither is configured.
+async function notify(mail: Mail): Promise<"resend" | "ses" | null> {
+  const resendKey = process.env.RESEND_API_KEY;
+  if (resendKey) {
+    const { error } = await new Resend(resendKey).emails.send({
+      from: FROM,
+      to: RECIPIENTS,
+      replyTo: mail.replyTo,
+      subject: mail.subject,
+      html: mail.html,
+    });
+    if (error) throw new Error(`resend: ${error.message}`);
+    return "resend";
+  }
+  const id = process.env.SES_ACCESS_KEY_ID;
+  const secret = process.env.SES_SECRET_ACCESS_KEY;
+  if (id && secret) {
+    const ses = new SESv2Client({
+      region: process.env.SES_REGION || "us-east-1",
+      credentials: { accessKeyId: id, secretAccessKey: secret },
+    });
+    await ses.send(
+      new SendEmailCommand({
+        FromEmailAddress: FROM,
+        Destination: { ToAddresses: RECIPIENTS },
+        ReplyToAddresses: [mail.replyTo],
+        Content: {
+          Simple: {
+            Subject: { Data: mail.subject, Charset: "UTF-8" },
+            Body: { Html: { Data: mail.html, Charset: "UTF-8" } },
+          },
+        },
+      })
+    );
+    return "ses";
+  }
+  return null;
+}
 
 function esc(s: string) {
   return String(s ?? "")
@@ -64,14 +113,6 @@ export async function POST(req: Request) {
       consentWhatsApp: consentWhatsApp === "on" || consentWhatsApp === "true",
     });
 
-    const key = process.env.RESEND_API_KEY;
-    if (!key) {
-      console.log("[contact] RESEND_API_KEY missing. Stored lead:", lead.id);
-      return NextResponse.json({ ok: true, devFallback: true, leadId: lead.id });
-    }
-
-    const resend = new Resend(key);
-
     const html = `
       <div style="font-family:Inter,system-ui,sans-serif;color:#111;max-width:680px;margin:0 auto">
         <h2 style="margin:0 0 8px">New project inquiry</h2>
@@ -95,20 +136,24 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    const { error } = await resend.emails.send({
-      from: FROM,
-      to: [RECIPIENT],
-      replyTo: email,
-      subject: `New inquiry - ${projectType} - ${name}`,
-      html,
-    });
-
-    if (error) {
-      console.error("[contact] resend error:", error);
+    let sentVia: "resend" | "ses" | null;
+    try {
+      sentVia = await notify({
+        subject: `New inquiry - ${projectType} - ${name}`,
+        html,
+        replyTo: email,
+      });
+    } catch (e) {
+      // The lead is already stored; only the notification failed.
+      console.error("[contact] email send failed:", e);
       return NextResponse.json(
         { error: "email_send_failed", leadId: lead.id },
         { status: 502 }
       );
+    }
+    if (!sentVia) {
+      console.log("[contact] no email provider configured. Stored lead:", lead.id);
+      return NextResponse.json({ ok: true, devFallback: true, leadId: lead.id });
     }
 
     return NextResponse.json({ ok: true, leadId: lead.id });
