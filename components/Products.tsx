@@ -1,4 +1,4 @@
-import { Briefcase, Users, Check, ArrowRight, Layers, MessageCircle } from "lucide-react";
+import { Briefcase, Users, Check, ArrowRight, Layers, MessageCircle, Newspaper } from "lucide-react";
 import { getDict, type Locale } from "@/lib/i18n";
 
 export default function Products({ locale }: { locale: Locale }) {
@@ -22,7 +22,7 @@ export default function Products({ locale }: { locale: Locale }) {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 md:grid-cols-2">
           <ProductCard
             Icon={Briefcase}
             name={d.products.careers.name}
@@ -53,6 +53,17 @@ export default function Products({ locale }: { locale: Locale }) {
             cta={d.products.cta}
             href="https://tawasul.idealailabs.com"
           />
+          <ProductCard
+            Icon={Newspaper}
+            name={d.products.daybrief.name}
+            tag={d.products.daybrief.tag}
+            badge={d.products.daybrief.badge}
+            desc={d.products.daybrief.desc}
+            features={d.products.daybrief.features}
+            grad="from-amber-400 via-orange-500 to-indigo-700"
+            cta={d.products.cta}
+            href="https://daybrief.idealailabs.com"
+          />
         </div>
       </div>
     </section>
@@ -63,6 +74,7 @@ function ProductCard({
   Icon,
   name,
   tag,
+  badge,
   desc,
   features,
   grad,
@@ -72,6 +84,7 @@ function ProductCard({
   Icon: React.ComponentType<{ className?: string }>;
   name: string;
   tag: string;
+  badge?: string;
   desc: string;
   features: readonly string[];
   grad: string;
@@ -91,8 +104,13 @@ function ProductCard({
             <Icon className="h-6 w-6" />
           </div>
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-[rgb(var(--text-muted))]">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[rgb(var(--text-muted))]">
               {tag}
+              {badge && (
+                <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] normal-case tracking-normal text-amber-800 dark:bg-amber-400/15 dark:text-amber-300">
+                  {badge}
+                </span>
+              )}
             </div>
             <h3 className="font-display text-2xl font-bold text-[rgb(var(--text))]">
               {name}

@@ -61,7 +61,7 @@ export const dictionaries = {
       kicker: "Our products",
       title: "Proven platforms, running in production.",
       subtitle:
-        "Three flagship AI products running in production across the region.",
+        "Our flagship AI products: three running in production across the region, and our newest in beta.",
       careers: {
         name: "CareersAgent",
         tag: "Job Search Platform",
@@ -93,6 +93,18 @@ export const dictionaries = {
           "Real-time availability & no double-booking",
           "Unified inbox + staff dashboard",
           "Arabic & English, multi-business",
+        ],
+      },
+      daybrief: {
+        name: "Daybrief",
+        tag: "AI News Briefing App",
+        badge: "New · Beta",
+        desc: "A personal daily brief you set up in plain words. Daybrief researches the web every day and writes a short, sourced summary of exactly what you follow, then answers any question about it.",
+        features: [
+          "Describe your topics once, edit anytime",
+          "Sourced stories with confidence labels",
+          "Ask follow-ups on any story",
+          "Installable app for iPhone & Android",
         ],
       },
       cta: "Learn more",
@@ -223,7 +235,7 @@ export const dictionaries = {
     products: {
       kicker: "منتجاتنا",
       title: "منصّات مجرّبة وتعمل في الإنتاج.",
-      subtitle: "ثلاثة من منتجاتنا الرائدة تعمل في الإنتاج في المنطقة.",
+      subtitle: "منتجاتنا الرائدة: ثلاثة تعمل في الإنتاج في المنطقة، وأحدثها في مرحلة تجريبية.",
       careers: {
         name: "كاريرز إيجنت",
         tag: "منصة البحث عن وظيفة",
@@ -255,6 +267,18 @@ export const dictionaries = {
           "توفّر فوري ومنع التعارض في الحجز",
           "صندوق وارد موحّد ولوحة تحكم",
           "عربي وإنجليزي، متعدد الشركات",
+        ],
+      },
+      daybrief: {
+        name: "داي بريف",
+        tag: "تطبيق ملخّص الأخبار بالذكاء الاصطناعي",
+        badge: "جديد · نسخة تجريبية",
+        desc: "ملخّص يومي شخصي تضبطه بكلماتك. يبحث داي بريف في الويب كل يوم ويكتب لك ملخصًا قصيرًا موثّق المصادر عمّا تتابعه بالضبط، ثم يجيب عن أي سؤال حوله.",
+        features: [
+          "صف اهتماماتك مرة واحدة وعدّلها متى شئت",
+          "أخبار موثّقة المصادر مع درجة الموثوقية",
+          "اسأل عن أي خبر واحصل على شرح",
+          "تطبيق قابل للتثبيت على آيفون وأندرويد",
         ],
       },
       cta: "اعرف المزيد",
